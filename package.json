@@ -1,0 +1,24 @@
+{
+  "name": "binary-search-tree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "binarySearchTree.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hattima-tim/binary-search-tree.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hattima-tim/binary-search-tree/issues"
+  },
+  "homepage": "https://github.com/hattima-tim/binary-search-tree#readme",
+  "devDependencies": {
+    "jest": "^29.2.2",
+    "eslint": "^8.26.0"
+  }
+}

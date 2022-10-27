@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/hattima-tim/binary-search-tree#readme",
   "devDependencies": {
-    "jest": "^29.2.2",
-    "eslint": "^8.26.0"
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^29.2.2"
   }
 }

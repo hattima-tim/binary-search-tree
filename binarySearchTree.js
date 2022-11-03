@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 function Node(data) {
-  let left;
-  let right;
+  const left = null;
+  const right = null;
   return {
     root: data,
     left,
@@ -38,4 +38,13 @@ function buildTree(arr, start, end, count = 0) {
 
 buildTree([1, 2, 3]);
 
-module.exports = { buildTree };
+function insert(value, tree = {}) {
+  if (tree === null || Object.keys(tree).length === 0) {
+    return Node(value);
+  }
+  if (value < tree.root) tree.left = insert(value, tree.left);
+  else if (value > tree.root) tree.right = insert(value, tree.right);
+  return tree;
+}
+
+module.exports = { buildTree, insert };

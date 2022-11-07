@@ -32,17 +32,8 @@ test('no duplicates in the tree', () => {
   });
 });
 
-test('insert 4 without giving a tree to insert to', () => {
+test('insert 4 to the tree created in previous test', () => {
   expect(binaryTree.insert(4)).toEqual({
-    left: null,
-    right: null,
-    root: 4,
-  });
-});
-
-test('insert 4 to an existing tree', () => {
-  const tree = binaryTree.buildTree([1, 2, 3]);
-  expect(binaryTree.insert(4, tree)).toEqual({
     left: {
       left: null,
       right: null,

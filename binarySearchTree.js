@@ -48,13 +48,15 @@ function Tree() {
     return storedTree;
   }
 
-  function deleteNode(value, storedtree = tree) {
-    if (!storedtree || storedtree.root === value) {
+  function deleteNode(value, storedTree = tree) {
+    if (!storedTree || storedTree.root === value) {
+      if (storedTree.left === null) return storedTree.right;
+      if (storedTree.right === null) return storedTree.left;
       return null;
     }
-    if (value < storedtree.root) storedtree.left = deleteNode(value, storedtree.left);
-    else if (value > storedtree.root) storedtree.right = deleteNode(value, storedtree.right);
-    return storedtree;
+    if (value < storedTree.root) storedTree.left = deleteNode(value, storedTree.left);
+    else if (value > storedTree.root) storedTree.right = deleteNode(value, storedTree.right);
+    return storedTree;
   }
   return { buildTree, insert, deleteNode };
 }

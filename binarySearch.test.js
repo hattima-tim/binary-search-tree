@@ -83,3 +83,47 @@ test('deleteNode returns unchanged tree if node is not found', () => {
     root: 2,
   });
 });
+
+test('delete node which has one child', () => {
+  // create a new tree
+  expect(binaryTree.buildTree([1, 2, 3, 4, 5])).toEqual({
+    left: {
+      left: null,
+      right: {
+        left: null,
+        right: null,
+        root: 2,
+      },
+      root: 1,
+    },
+    right: {
+      left: null,
+      right: {
+        left: null,
+        right: null,
+        root: 5,
+      },
+      root: 4,
+    },
+    root: 3,
+  });
+
+  // delete a node with one child from the new tree
+  expect(binaryTree.deleteNode(4)).toEqual({
+    left: {
+      left: null,
+      right: {
+        left: null,
+        right: null,
+        root: 2,
+      },
+      root: 1,
+    },
+    right: {
+      left: null,
+      right: null,
+      root: 5,
+    },
+    root: 3,
+  });
+});

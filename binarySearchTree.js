@@ -48,7 +48,15 @@ function Tree() {
     return storedTree;
   }
 
-  return { buildTree, insert };
+  function deleteNode(value, storedtree = tree) {
+    if (!storedtree || storedtree.root === value) {
+      return null;
+    }
+    if (value < storedtree.root) storedtree.left = deleteNode(value, storedtree.left);
+    else if (value > storedtree.root) storedtree.right = deleteNode(value, storedtree.right);
+    return storedtree;
+  }
+  return { buildTree, insert, deleteNode };
 }
 
 module.exports = Tree();

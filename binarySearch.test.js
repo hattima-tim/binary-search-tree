@@ -127,3 +127,29 @@ test('delete node which has one child', () => {
     root: 3,
   });
 });
+
+test('delete node which has two childs', () => {
+  // we got a tree structure like this from previous test
+  //  │  ┌── 5
+  // └──3
+  //    │   ┌── 2
+  //    └── 1
+  // now let's remove 3, which has two childs
+  // after the removal we should get this tree
+  // └──5
+  //    │   ┌── 2
+  //    └── 1
+  expect(binaryTree.deleteNode(3)).toEqual({
+    left: {
+      left: null,
+      right: {
+        left: null,
+        right: null,
+        root: 2,
+      },
+      root: 1,
+    },
+    right: null,
+    root: 5,
+  });
+});

@@ -48,8 +48,23 @@ function Tree() {
     return storedTree;
   }
 
+  function findInorderSuccessor(treeToSearch) {
+    if (treeToSearch.left === null) {
+      const inorderSuccessor = treeToSearch.root;
+      return inorderSuccessor;
+    }
+    return findInorderSuccessor(treeToSearch.left);
+  }
+
   function deleteNode(value, storedTree = tree) {
-    if (!storedTree || storedTree.root === value) {
+    if (!storedTree) return null;
+    if (storedTree.root === value) {
+      if (storedTree.left !== null && storedTree.right !== null) {
+        const inorderSuccessor = findInorderSuccessor(storedTree.right);
+        deleteNode(inorderSuccessor);
+        storedTree.root = inorderSuccessor;
+        return storedTree;
+      }
       if (storedTree.left === null) return storedTree.right;
       if (storedTree.right === null) return storedTree.left;
       return null;
@@ -58,6 +73,7 @@ function Tree() {
     else if (value > storedTree.root) storedTree.right = deleteNode(value, storedTree.right);
     return storedTree;
   }
+
   return { buildTree, insert, deleteNode };
 }
 

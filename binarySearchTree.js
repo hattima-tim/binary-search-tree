@@ -94,7 +94,14 @@ function Tree() {
     return valueArr;
   }
 
-  return { buildTree, insert, deleteNode, levelOrder };
+  function find(value,storedTree = tree){
+    if(!storedTree || !value) return null;
+    if(value === storedTree.root) return storedTree;
+    else if(value<storedTree.root) return find(value,storedTree.left);
+    else if(value>storedTree.root) return find(value,storedTree.right);
+  }
+
+  return { buildTree, insert, deleteNode, find, levelOrder };
 }
 
 module.exports = Tree();

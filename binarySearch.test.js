@@ -191,13 +191,22 @@ test('find function', () => {
   })
 })
 
-describe('depth first traversal',()=>{
-  describe('inorder function',()=>{
-    test('returns an array with values when no callback is provided',()=>{
-      expect(binaryTree.inorder()).toStrictEqual([1,2,3,4,5,6])
+describe('depth first traversal', () => {
+  describe('inorder function', () => {
+    test('returns an array with values when no callback is provided', () => {
+      expect(binaryTree.inorder()).toStrictEqual([1, 2, 3, 4, 5, 6])
     })
-    test('returns the return value of callback func when it is provided',()=>{
-      expect(binaryTree.inorder(val=>val+2)).toStrictEqual([3,4,5,6,7,8])
+    test('returns the return value of callback func when it is provided', () => {
+      expect(binaryTree.inorder(val => val + 2)).toStrictEqual([3, 4, 5, 6, 7, 8])
+    })
+  })
+
+  describe('preorder function', () => {
+    test('returns an array with values when no callback is provided', () => {
+      expect(binaryTree.preorder()).toStrictEqual([3, 1, 2, 5, 4, 6])
+    })
+    test('returns the return value of callback func when it is provided', () => {
+      expect(binaryTree.preorder(val => val + 2)).toStrictEqual([5, 3, 4, 7, 6, 8])
     })
   })
 })

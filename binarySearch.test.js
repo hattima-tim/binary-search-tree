@@ -165,3 +165,28 @@ describe('levelOrder function', () => {
     expect(binaryTree.levelOrder((val) => val + 2)).toStrictEqual([5, 3, 7, 4, 6, 8]);
   });
 })
+
+test('find function', () => {
+  // currently we have a tree like this (created in prev test)
+  //  │       ┌── 6 
+  //  │   ┌── 5 
+  //  │   │   └── 4 
+  //  └── 3 
+  //      │   ┌── 2 
+  //      └── 1
+  // so, given 5 as a value, find function should return a node with
+  // 4 as a left value and 6 as a right value
+  expect(binaryTree.find(5)).toStrictEqual({
+    left: {
+      left: null,
+      right: null,
+      root: 4
+    },
+    right: {
+      left: null,
+      right: null,
+      root: 6
+    },
+    root: 5
+  })
+})

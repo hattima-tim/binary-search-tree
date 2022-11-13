@@ -90,18 +90,32 @@ function Tree() {
     if (queue.length !== 0) {
       levelOrder(callback, callbackReturns, queue, valueArr)
     }
-    if (callback) return callbackReturns;
-    return valueArr;
+    return callback? callbackReturns:valueArr;
   }
 
-  function find(value,storedTree = tree){
-    if(!storedTree || !value) return null;
-    if(value === storedTree.root) return storedTree;
-    else if(value<storedTree.root) return find(value,storedTree.left);
-    else if(value>storedTree.root) return find(value,storedTree.right);
+  function find(value, storedTree = tree) {
+    if (!storedTree || !value) return null;
+    if (value === storedTree.root) return storedTree;
+    else if (value < storedTree.root) return find(value, storedTree.left);
+    else if (value > storedTree.root) return find(value, storedTree.right);
   }
 
-  return { buildTree, insert, deleteNode, find, levelOrder };
+  function inorder(
+    callback,
+    callbackReturns = [],
+    storedTree = tree,
+    valuesArr = []) {
+    if (!storedTree) return;
+    inorder(callback, callbackReturns, storedTree.left, valuesArr);
+
+    callback ?
+      callbackReturns.push(callback(storedTree.root)) :
+      valuesArr.push(storedTree.root);
+
+    inorder(callback, callbackReturns, storedTree.right, valuesArr);
+    return callback ? callbackReturns : valuesArr;
+  }
+  return { buildTree, insert, deleteNode, find, levelOrder, inorder };
 }
 
 module.exports = Tree();

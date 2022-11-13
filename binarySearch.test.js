@@ -153,3 +153,15 @@ test('delete node which has two childs', () => {
     root: 5,
   });
 });
+
+describe('levelOrder function', () => {
+  test('returns an array with values in level order when no callback is provided', () => {
+    // first create a new bst
+    binaryTree.buildTree([1, 2, 3, 4, 5, 6]);
+    expect(binaryTree.levelOrder()).toStrictEqual([3, 1, 5, 2, 4, 6]);
+  });
+
+  test('returns the return values of the callback function when it is provided', () => {
+    expect(binaryTree.levelOrder((val) => val + 2)).toStrictEqual([5, 3, 7, 4, 6, 8]);
+  });
+})

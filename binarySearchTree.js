@@ -74,7 +74,27 @@ function Tree() {
     return storedTree;
   }
 
-  return { buildTree, insert, deleteNode };
+  function levelOrder(
+    callback,
+    callbackReturns = [],
+    queue = [tree],
+    valueArr = []) {
+
+    callback ?
+      callbackReturns.push(callback(queue[0].root)) :
+      valueArr.push(queue[0].root);
+
+    if (queue[0].left !== null) queue.push(queue[0].left);
+    if (queue[0].right !== null) queue.push(queue[0].right);
+    queue.shift();
+    if (queue.length !== 0) {
+      levelOrder(callback, callbackReturns, queue, valueArr)
+    }
+    if (callback) return callbackReturns;
+    return valueArr;
+  }
+
+  return { buildTree, insert, deleteNode, levelOrder };
 }
 
 module.exports = Tree();

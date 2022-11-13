@@ -131,7 +131,23 @@ function Tree() {
     preorder(callback, callbackReturns, storedTree.right, valuesArr);
     return callback ? callbackReturns : valuesArr;
   }
-  return { buildTree, insert, deleteNode, find, levelOrder, inorder, preorder };
+
+  function postorder(
+    callback,
+    callbackReturns = [],
+    storedTree = tree,
+    valuesArr = []) {
+    if (!storedTree) return;
+    postorder(callback, callbackReturns, storedTree.left, valuesArr);
+    postorder(callback, callbackReturns, storedTree.right, valuesArr);
+
+    callback ?
+      callbackReturns.push(callback(storedTree.root)) :
+      valuesArr.push(storedTree.root);
+
+    return callback ? callbackReturns : valuesArr;
+  }
+  return { buildTree, insert, deleteNode, find, levelOrder, inorder, preorder ,postorder};
 }
 
 module.exports = Tree();

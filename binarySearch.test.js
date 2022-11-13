@@ -209,4 +209,13 @@ describe('depth first traversal', () => {
       expect(binaryTree.preorder(val => val + 2)).toStrictEqual([5, 3, 4, 7, 6, 8])
     })
   })
+
+  describe('postorder function', () => {
+    test('returns an array with values when no callback is provided', () => {
+      expect(binaryTree.postorder()).toStrictEqual([ 2, 1, 4, 6, 5, 3])
+    })
+    test('returns the return value of callback func when it is provided', () => {
+      expect(binaryTree.postorder(val => val + 2)).toStrictEqual([4, 3, 6, 8, 7, 5 ])
+    })
+  })
 })

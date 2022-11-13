@@ -190,3 +190,14 @@ test('find function', () => {
     root: 5
   })
 })
+
+describe('depth first traversal',()=>{
+  describe('inorder function',()=>{
+    test('returns an array with values when no callback is provided',()=>{
+      expect(binaryTree.inorder()).toStrictEqual([1,2,3,4,5,6])
+    })
+    test('returns the return value of callback func when it is provided',()=>{
+      expect(binaryTree.inorder(val=>val+2)).toStrictEqual([3,4,5,6,7,8])
+    })
+  })
+})

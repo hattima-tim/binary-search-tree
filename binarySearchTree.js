@@ -90,7 +90,7 @@ function Tree() {
     if (queue.length !== 0) {
       levelOrder(callback, callbackReturns, queue, valueArr)
     }
-    return callback? callbackReturns:valueArr;
+    return callback ? callbackReturns : valueArr;
   }
 
   function find(value, storedTree = tree) {
@@ -147,7 +147,32 @@ function Tree() {
 
     return callback ? callbackReturns : valuesArr;
   }
-  return { buildTree, insert, deleteNode, find, levelOrder, inorder, preorder ,postorder};
+
+  function height(findValue, pointPerNode = 0) {
+    const tree = find(findValue);
+    let leftSubTreeHeight = 0;
+    let rightSubTreeHeight = 0;
+
+    leftSubTreeHeight = pointPerNode +
+      (tree.left ? height(tree.left.root, 1) : 0);
+    rightSubTreeHeight = pointPerNode +
+      (tree.right ? height(tree.right.root, 1) : 0);
+
+    return leftSubTreeHeight > rightSubTreeHeight ?
+      leftSubTreeHeight : rightSubTreeHeight;
+  }
+
+  return {
+    buildTree,
+    insert,
+    deleteNode,
+    find,
+    levelOrder,
+    inorder,
+    preorder,
+    postorder,
+    height
+  };
 }
 
 module.exports = Tree();

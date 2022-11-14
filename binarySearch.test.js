@@ -219,3 +219,44 @@ describe('depth first traversal', () => {
     })
   })
 })
+
+describe('height function',()=>{
+  // currently we have a tree like this (created in a prev test)
+  //  │       ┌── 6 
+  //  │   ┌── 5 
+  //  │   │   └── 4 
+  //  └── 3 
+  //      │   ┌── 2 
+  //      └── 1
+  
+  test('height of 3 is 2',()=>{
+    expect(binaryTree.height(3)).toBe(2)
+  })
+
+  test('height of 5 is 1',()=>{
+    expect(binaryTree.height(5)).toBe(1)
+  })
+
+  test('height of 1 is 1',()=>{
+    expect(binaryTree.height(1)).toBe(1)
+  })
+
+  test('height of 2(a leaf node) is 0',()=>{
+    expect(binaryTree.height(2)).toBe(0)
+  })
+  
+  test('height of 4 is 3',()=>{
+    // create a new tree
+    binaryTree.buildTree([1,2,3,4,5,6,7,8])
+    // the tree should look like the following
+    //  │           ┌── 8
+    //  │       ┌── 7
+    //  │   ┌── 6
+    //  │   │   └── 5
+    //  └── 4
+    //      │   ┌── 3
+    //      └── 2
+    //          └── 1
+    expect(binaryTree.height(4)).toBe(3)
+  })
+})

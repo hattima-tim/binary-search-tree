@@ -212,15 +212,15 @@ describe('depth first traversal', () => {
 
   describe('postorder function', () => {
     test('returns an array with values when no callback is provided', () => {
-      expect(binaryTree.postorder()).toStrictEqual([ 2, 1, 4, 6, 5, 3])
+      expect(binaryTree.postorder()).toStrictEqual([2, 1, 4, 6, 5, 3])
     })
     test('returns the return value of callback func when it is provided', () => {
-      expect(binaryTree.postorder(val => val + 2)).toStrictEqual([4, 3, 6, 8, 7, 5 ])
+      expect(binaryTree.postorder(val => val + 2)).toStrictEqual([4, 3, 6, 8, 7, 5])
     })
   })
 })
 
-describe('height function',()=>{
+describe('height function', () => {
   // currently we have a tree like this (created in a prev test)
   //  │       ┌── 6 
   //  │   ┌── 5 
@@ -228,26 +228,26 @@ describe('height function',()=>{
   //  └── 3 
   //      │   ┌── 2 
   //      └── 1
-  
-  test('height of 3 is 2',()=>{
+
+  test('height of 3 is 2', () => {
     expect(binaryTree.height(3)).toBe(2)
   })
 
-  test('height of 5 is 1',()=>{
+  test('height of 5 is 1', () => {
     expect(binaryTree.height(5)).toBe(1)
   })
 
-  test('height of 1 is 1',()=>{
+  test('height of 1 is 1', () => {
     expect(binaryTree.height(1)).toBe(1)
   })
 
-  test('height of 2(a leaf node) is 0',()=>{
+  test('height of 2(a leaf node) is 0', () => {
     expect(binaryTree.height(2)).toBe(0)
   })
-  
-  test('height of 4 is 3',()=>{
+
+  test('height of 4 is 3', () => {
     // create a new tree
-    binaryTree.buildTree([1,2,3,4,5,6,7,8])
+    binaryTree.buildTree([1, 2, 3, 4, 5, 6, 7, 8])
     // the tree should look like the following
     //  │           ┌── 8
     //  │       ┌── 7
@@ -258,5 +258,24 @@ describe('height function',()=>{
     //      └── 2
     //          └── 1
     expect(binaryTree.height(4)).toBe(3)
+  })
+})
+
+describe('depth function', () => {
+  // we got the following tree from previous test
+  //  │           ┌── 8
+  //  │       ┌── 7
+  //  │   ┌── 6
+  //  │   │   └── 5
+  //  └── 4
+  //      │   ┌── 3
+  //      └── 2
+  //          └── 1
+  test('depth of 8 is 3', () => {
+    expect(binaryTree.depth(8)).toBe(3);
+  })
+
+  test('depth of 4 is 0', () => {
+    expect(binaryTree.depth(4)).toBe(0);
   })
 })

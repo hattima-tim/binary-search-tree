@@ -148,18 +148,25 @@ function Tree() {
     return callback ? callbackReturns : valuesArr;
   }
 
-  function height(findValue, pointPerNode = 0) {
-    const tree = find(findValue);
+  function height(nodeValue, edgeNumber = 0) {
+    const tree = find(nodeValue);
     let leftSubTreeHeight = 0;
     let rightSubTreeHeight = 0;
 
-    leftSubTreeHeight = pointPerNode +
+    leftSubTreeHeight = edgeNumber +
       (tree.left ? height(tree.left.root, 1) : 0);
-    rightSubTreeHeight = pointPerNode +
+    rightSubTreeHeight = edgeNumber +
       (tree.right ? height(tree.right.root, 1) : 0);
 
     return leftSubTreeHeight > rightSubTreeHeight ?
       leftSubTreeHeight : rightSubTreeHeight;
+  }
+
+  function depth(nodeValue, storedTree = tree, depthCount = 0) {
+    if (!storedTree || !nodeValue) return 0;
+    if (nodeValue === storedTree.root) return depthCount;
+    else if (nodeValue < storedTree.root) return depth(nodeValue, storedTree.left, depthCount += 1);
+    else if (nodeValue > storedTree.root) return depth(nodeValue, storedTree.right, depthCount += 1);
   }
 
   return {
@@ -171,7 +178,8 @@ function Tree() {
     inorder,
     preorder,
     postorder,
-    height
+    height,
+    depth
   };
 }
 

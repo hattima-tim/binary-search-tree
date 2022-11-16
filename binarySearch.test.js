@@ -279,3 +279,57 @@ describe('depth function', () => {
     expect(binaryTree.depth(4)).toBe(0);
   })
 })
+
+describe('isBalanced function', () => {
+  test('returns true when the tree is balanced', () => {
+    binaryTree.buildTree([1, 2, 3]);
+    // │   ┌── 3
+    // └── 2
+    //     └── 1
+    expect(binaryTree.isBalanced()).toBe(true);
+  })
+
+  test('returns true when the height difference of left & right subtree is 1', () => {
+    binaryTree.insert(4);
+    // │       ┌── 4
+    // │   ┌── 3
+    // └── 2
+    //     └── 1
+    expect(binaryTree.isBalanced()).toBe(true);
+  })
+
+  test('returns false when the tree is unbalanced', () => {
+    binaryTree.insert(5);
+    binaryTree.insert(6);
+    // │               ┌── 6
+    // │           ┌── 5
+    // │       ┌── 4
+    // │   ┌── 3
+    // └── 2
+    //     └── 1
+    expect(binaryTree.isBalanced()).toBe(false);
+  })
+
+  test('returns false when there is no right subtree but the left subtree has height of 1', () => {
+    binaryTree.deleteNode(6);
+    binaryTree.deleteNode(5);
+    binaryTree.deleteNode(4);
+    binaryTree.deleteNode(3);
+    binaryTree.insert(0);
+    // └── 2
+    //     └── 1
+    //         └── 0
+    expect(binaryTree.isBalanced()).toBe(false);
+  })
+
+  test('returns true when the tree has no left or right subtree', () => {
+    binaryTree.deleteNode(0);
+    binaryTree.deleteNode(1);
+    // └── 2
+    expect(binaryTree.isBalanced()).toBe(true);
+  })
+  test('returns true when the tree is empty', () => {
+    binaryTree.deleteNode(2);
+    expect(binaryTree.isBalanced()).toBe(true);
+  })
+})

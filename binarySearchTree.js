@@ -94,7 +94,7 @@ function Tree() {
   }
 
   function find(value, storedTree = tree) {
-    if (!storedTree || value==null || value==undefined) return null;
+    if (!storedTree || value == null || value == undefined) return null;
     if (value === storedTree.root) return storedTree;
     else if (value < storedTree.root) return find(value, storedTree.left);
     else if (value > storedTree.root) return find(value, storedTree.right);
@@ -169,6 +169,22 @@ function Tree() {
     else if (nodeValue > storedTree.root) return depth(nodeValue, storedTree.right, depthCount += 1);
   }
 
+  function isBalanced(storedTree = tree) {
+    if (!storedTree || (!storedTree.left && !storedTree.right)) return true;
+    let heightOfLeftSubTree = storedTree.left ?
+      height(storedTree.left.root) : -1;
+    let heightOfRightSubTree = storedTree.right ?
+      height(storedTree.right.root) : -1;
+
+    if (Math.abs(heightOfLeftSubTree - heightOfRightSubTree) > 1) {
+      return false;
+    }
+    let isLeftSubTreeBalanced = isBalanced(storedTree.left);
+    let isRightSubTreeBalanced = isBalanced(storedTree.right);
+    return (isLeftSubTreeBalanced === false || isRightSubTreeBalanced === false) ?
+      false : true;
+  }
+
   return {
     buildTree,
     insert,
@@ -179,7 +195,8 @@ function Tree() {
     preorder,
     postorder,
     height,
-    depth
+    depth,
+    isBalanced
   };
 }
 

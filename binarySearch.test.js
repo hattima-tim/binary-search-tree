@@ -333,3 +333,21 @@ describe('isBalanced function', () => {
     expect(binaryTree.isBalanced()).toBe(true);
   })
 })
+
+test('rebalance function rebalances an unbalanced tree', () => {
+  binaryTree.insert(2);
+  binaryTree.insert(1);
+  binaryTree.insert(3);
+  binaryTree.insert(4);
+  binaryTree.insert(5);
+  binaryTree.insert(6);
+  // │               ┌── 6
+  // │           ┌── 5
+  // │       ┌── 4
+  // │   ┌── 3
+  // └── 2
+  //     └── 1
+  expect(binaryTree.isBalanced()).toBe(false);
+  binaryTree.rebalance();
+  expect(binaryTree.isBalanced()).toBe(true);
+})

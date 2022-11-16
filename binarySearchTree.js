@@ -94,7 +94,7 @@ function Tree() {
   }
 
   function find(value, storedTree = tree) {
-    if (!storedTree || !value) return null;
+    if (!storedTree || value==null || value==undefined) return null;
     if (value === storedTree.root) return storedTree;
     else if (value < storedTree.root) return find(value, storedTree.left);
     else if (value > storedTree.root) return find(value, storedTree.right);

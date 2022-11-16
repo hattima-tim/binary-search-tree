@@ -185,6 +185,13 @@ function Tree() {
       false : true;
   }
 
+  function rebalance(){
+    let unbalancedTreeValues = preorder()
+    let balancedTree = buildTree(unbalancedTreeValues);
+    tree = balancedTree;
+    return tree;
+  }
+
   return {
     buildTree,
     insert,
@@ -196,7 +203,8 @@ function Tree() {
     postorder,
     height,
     depth,
-    isBalanced
+    isBalanced,
+    rebalance
   };
 }
 

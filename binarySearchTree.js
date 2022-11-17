@@ -204,6 +204,16 @@ function Tree() {
     return tree;
   }
 
+  const prettyPrint = (node = tree, prefix = '', isLeft = true) => {
+    if (node.right !== null) {
+      prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+    }
+    console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.root}`);
+    if (node.left !== null) {
+      prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+    }
+  }
+
   return {
     buildTree,
     insert,
@@ -217,6 +227,7 @@ function Tree() {
     depth,
     isBalanced,
     rebalance,
+    prettyPrint
   };
 }
 

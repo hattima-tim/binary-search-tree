@@ -10,22 +10,31 @@ function Node(data) {
 }
 
 function Tree() {
+
+  function returnSortedArrWithoutDuplicate(sortedArr) {
+    let prevElement;
+
+    return sortedArr.filter((currElement) => {
+      if (prevElement === undefined) {
+        prevElement = currElement;
+        return true;
+      }
+
+      if (prevElement === currElement) return false;
+      prevElement = currElement;
+      return true;
+    });
+  }
+
+  let tree = {};
   let sortedArr;
   let sortedArrWithoutDuplicate;
-  let tree = {};
-
   function buildTree(arr, start, end, count = 0) {
     if (start > end) return null;
     if (count === 0) {
       sortedArr = arr.sort((a, b) => a - b);
+      sortedArrWithoutDuplicate = returnSortedArrWithoutDuplicate(sortedArr);
 
-      let arrIndexToBeRemoved;
-      sortedArrWithoutDuplicate = sortedArr.filter((element, index) => {
-        const leftElement = element;
-        const rightElement = sortedArr[index + 1];
-        if (leftElement === rightElement) arrIndexToBeRemoved = index + 1;
-        return arrIndexToBeRemoved !== index;
-      });
       start = 0;
       end = sortedArrWithoutDuplicate.length - 1;
     }
@@ -105,6 +114,7 @@ function Tree() {
     callbackReturns = [],
     storedTree = tree,
     valuesArr = []) {
+
     if (!storedTree) return;
     inorder(callback, callbackReturns, storedTree.left, valuesArr);
 
@@ -121,6 +131,7 @@ function Tree() {
     callbackReturns = [],
     storedTree = tree,
     valuesArr = []) {
+
     if (!storedTree) return;
 
     callback ?
@@ -137,6 +148,7 @@ function Tree() {
     callbackReturns = [],
     storedTree = tree,
     valuesArr = []) {
+
     if (!storedTree) return;
     postorder(callback, callbackReturns, storedTree.left, valuesArr);
     postorder(callback, callbackReturns, storedTree.right, valuesArr);
@@ -185,7 +197,7 @@ function Tree() {
       false : true;
   }
 
-  function rebalance(){
+  function rebalance() {
     let unbalancedTreeValues = preorder()
     let balancedTree = buildTree(unbalancedTreeValues);
     tree = balancedTree;
@@ -204,7 +216,7 @@ function Tree() {
     height,
     depth,
     isBalanced,
-    rebalance
+    rebalance,
   };
 }
 
